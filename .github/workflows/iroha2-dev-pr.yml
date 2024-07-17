@@ -164,12 +164,12 @@ jobs:
           poetry install
       - name: Run client cli tests
         working-directory: client_cli/pytests
-      #   env:
-      #     # prepared by `test_env.py`
-      #     CLIENT_CLI_BINARY: ../../test/iroha
-      #     CLIENT_CLI_CONFIG: ../../test/client.toml
-      #   run: |
-      #     poetry run pytest
+        env:
+          # prepared by `test_env.py`
+          CLIENT_CLI_BINARY: ../../test/iroha
+          CLIENT_CLI_CONFIG: ../../test/client.toml
+        run: |
+          poetry run pytest
       # - name: Cleanup test environment
       #   run: |
       #     ./scripts/test_env.py cleanup
