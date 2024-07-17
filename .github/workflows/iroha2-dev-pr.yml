@@ -141,16 +141,29 @@ jobs:
           docker compose -f ${{ env.DOCKER_COMPOSE_PATH }}/docker-compose.yml up --wait || exit 1
       - name: Show containers names
         run: docker ps -a
-      # - name: Run torii api tests
-      #   working-directory: torii/pytests
-      #   run: |
-      #     poetry run pytest
-      # - name: Install client cli dependencies using Poetry
-      #   working-directory: client_cli/pytests
-      #   run: |
-      #     poetry install
-      # - name: Run client cli tests
-      #   working-directory: client_cli/pytests
+      - name: Copy build client cli bin into runner
+        run: |
+          mkdir -p ./test
+          docker cp swarm-irohad0-1:/usr/local/bin/iroha ./test
+          cp ./configs/swarm/client.toml ./test
+          ls ./test
+      - name: Mark binaries as executable
+        run: |
+          chmod +x ${{ env.CLIENT_CLI_DIR }}
+      - name: Install torii api dependencies using Poetry
+        working-directory: torii/pytests
+        run: |
+          poetry install
+      - name: Run torii api tests
+        working-directory: torii/pytests
+        run: |
+          poetry run pytest
+      - name: Install client cli dependencies using Poetry
+        working-directory: client_cli/pytests
+        run: |
+          poetry install
+      - name: Run client cli tests
+        working-directory: client_cli/pytests
       #   env:
       #     # prepared by `test_env.py`
       #     CLIENT_CLI_BINARY: ../../test/iroha
