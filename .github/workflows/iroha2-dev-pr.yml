@@ -143,13 +143,15 @@ jobs:
         run: docker ps -a
       - name: Copy build client cli bin into runner
         run: |
-          mkdir -p env.CLIENT_CLI_DIR
-          docker cp swarm-irohad0-1:/usr/local/bin/iroha ./test
-          cp ./configs/swarm/client.toml ./test
-          ls ./test
+          mkdir -p mkdir -p ${{ env.CLIENT_CLI_DIR }}
+          ls
+          docker exec swarm-irohad0-1 /usr/local/bin
+          docker cp swarm-irohad0-1:/usr/local/bin/iroha ${{ env.CLIENT_CLI_DIR }}
+          cp ./configs/swarm/client.toml ${{ env.CLIENT_CLI_DIR }}
+          ls ${{ env.CLIENT_CLI_DIR }}
       - name: Mark binaries as executable
         run: |
-          chmod +x ${{ env.CLIENT_CLI_DIR }}
+          chmod +x ${{ env.CLIENT_CLI_DIR }}/*
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
