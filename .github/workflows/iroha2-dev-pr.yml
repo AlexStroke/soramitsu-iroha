@@ -143,6 +143,7 @@ jobs:
         run: docker ps -a
       - name: Copy build client cli bin into runner
         run: |
+          pwd
           ls
           docker exec swarm-irohad0-1 ls /usr/local/bin
           docker cp swarm-irohad0-1:/usr/local/bin/iroha ${{ env.CLIENT_CLI_DIR }}
