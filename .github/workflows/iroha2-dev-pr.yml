@@ -144,7 +144,7 @@ jobs:
       - name: Copy build client cli bin into runner
         run: |
           sudo mkdir -p /test
-          docker exec swarm-irohad0-1 ls /usr/local/bin
+          ls
           docker cp swarm-irohad0-1:/usr/local/bin/iroha /test
           cp ./configs/swarm/client.toml /test
           ls /test
