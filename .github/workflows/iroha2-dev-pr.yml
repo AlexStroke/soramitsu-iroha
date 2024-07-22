@@ -144,9 +144,9 @@ jobs:
       - name: Copy build client cli bin into runner
         run: |
           mkdir -p test
-          docker cp swarm-irohad0-1:/usr/local/bin/iroha /test
-          cp ./configs/swarm/client.toml /test
-          ls /test
+          docker cp swarm-irohad0-1:/usr/local/bin/iroha test
+          cp ./configs/swarm/client.toml test
+          ls test
       - name: Mark binaries as executable
         run: |
           chmod +x ${{ env.CLIENT_CLI_DIR }}/iroha
