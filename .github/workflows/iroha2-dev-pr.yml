@@ -149,7 +149,7 @@ jobs:
           ls test
       - name: Mark binaries as executable
         run: |
-          chmod +x ${{ env.CLIENT_CLI_DIR }}/iroha
+          chmod +x test/iroha
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
