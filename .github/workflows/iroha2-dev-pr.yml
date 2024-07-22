@@ -151,7 +151,9 @@ jobs:
           chmod +x test/iroha
       - name: Install Poetry
         run: |
+          sudo apt install python3.11
           curl -sSL https://install.python-poetry.org | python3 -
+          poetry env use python3.11
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
