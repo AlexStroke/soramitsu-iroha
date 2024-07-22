@@ -146,10 +146,12 @@ jobs:
           mkdir -p test
           docker cp swarm-irohad0-1:/usr/local/bin/iroha test
           cp ./configs/swarm/client.toml test
-          ls test
       - name: Mark binaries as executable
         run: |
           chmod +x test/iroha
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
