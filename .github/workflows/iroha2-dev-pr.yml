@@ -98,8 +98,6 @@ jobs:
 
   torii-api-and-client-cli-tests:
     runs-on: ubuntu-latest #[self-hosted, Linux, iroha2]
-    container:
-      image: hyperledger/iroha2-ci:nightly-2024-04-18
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
