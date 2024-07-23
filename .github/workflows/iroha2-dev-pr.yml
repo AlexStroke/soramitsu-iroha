@@ -98,6 +98,8 @@ jobs:
 
   torii-api-and-client-cli-tests:
     runs-on: ubuntu-latest #[self-hosted, Linux, iroha2]
+    container:
+      image: hyperledger/iroha2-ci:nightly-2024-04-18
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -149,11 +151,11 @@ jobs:
       - name: Mark binaries as executable
         run: |
           chmod +x test/iroha
-      - name: Install Poetry
-        run: |
-          sudo apt install python3.11
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry env use python3.11
+      #- name: Install Poetry
+      #  run: |
+      #   sudo apt install python3.11
+      #    curl -sSL https://install.python-poetry.org | python3 -
+      #    poetry env use python3.11
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
