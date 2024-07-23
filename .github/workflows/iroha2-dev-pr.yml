@@ -151,14 +151,15 @@ jobs:
       - name: Mark binaries as executable
         run: |
           chmod +x test/iroha
-      #- name: Install Poetry
-      #  run: |
-      #   sudo apt install python3.11
-      #    curl -sSL https://install.python-poetry.org | python3 -
-      #    poetry env use python3.11
+      - name: Install Poetry
+        run: |
+          sudo apt install python3.11
+          curl -sSL https://install.python-poetry.org | python3 -
+          
       - name: Install torii api dependencies using Poetry
         working-directory: torii/pytests
         run: |
+          poetry env use python3.11
           poetry install
       - name: Run torii api tests
         working-directory: torii/pytests
@@ -167,6 +168,7 @@ jobs:
       - name: Install client cli dependencies using Poetry
         working-directory: client_cli/pytests
         run: |
+          poetry env use python3.11
           poetry install
       - name: Run client cli tests
         working-directory: client_cli/pytests
